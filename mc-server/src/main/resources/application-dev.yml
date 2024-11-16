@@ -1,0 +1,16 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: mooncell
+    username: root
+    password: 2887
+  alioss:
+    endpoint: oss-cn-wuhan-lr.aliyuncs.com
+    bucket-name: web-tlias-karazuki
+#  redis:
+#    host: localhost
+#    port: 6379
+#    password: 2887
+#    database: 0
