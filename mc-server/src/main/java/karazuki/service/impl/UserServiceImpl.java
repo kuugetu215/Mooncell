@@ -1,15 +1,13 @@
 package karazuki.service.impl;
 
 import dto.LoginOrRegisterDTO;
+import dto.UserDTO;
 import entity.User;
 import karazuki.mapper.UserMapper;
 import karazuki.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
-import vo.LoginVO;
-
-import javax.security.auth.login.AccountLockedException;
 import java.time.LocalDateTime;
 
 
@@ -74,5 +72,28 @@ public class UserServiceImpl implements UserService {
         user.setUserType(0);
 
         userMapper.insert(user);
+    }
+
+    /**
+     * 更改用户信息
+     * @param userDTO
+     */
+    @Override
+    public void update(UserDTO userDTO) {
+        User user = new User();
+        BeanUtils.copyProperties(userDTO, user);
+
+        userMapper.update(user);
+    }
+
+    /**
+     * 根据id查找用户信息
+     * @param id
+     * @return
+     */
+    @Override
+    public User findById(Integer id) {
+        User user = userMapper.findById(id);
+        return user;
     }
 }

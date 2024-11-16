@@ -1,17 +1,18 @@
 package karazuki.controller;
 
 import dto.LoginOrRegisterDTO;
+import dto.UserDTO;
 import entity.User;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import karazuki.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import result.Result;
 import utils.JwtUtils;
 import vo.LoginVO;
@@ -63,9 +64,35 @@ public class UserController {
      */
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public Result<Object> register(@RequestBody LoginOrRegisterDTO loginOrRegisterDTO){
+    public Result register(@RequestBody LoginOrRegisterDTO loginOrRegisterDTO){
         log.info("用户注册");
         userService.register(loginOrRegisterDTO);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @Operation(summary = "根据id查询用户信息")
+    @GetMapping("/user/{id}")
+    public Result<User> findById(@PathVariable Integer id){
+        log.info("根据id查询用户信息");
+        User user = userService.findById(id);
+        return Result.success(user);
+    }
+
+    /**
+     * 更改用户信息
+     * @param userDTO
+     * @return
+     */
+    @Operation(summary = "更改用户信息")
+    @PutMapping("/user/upadte")
+    public Result update(@RequestBody UserDTO userDTO){
+        log.info("更改用户信息");
+        userService.update(userDTO);
         return Result.success();
     }
 }

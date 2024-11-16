@@ -8,4 +8,26 @@
         values
         (#{username}, #{password}, #{name}, #{image}, #{createTime}, #{userType})
     </insert>
+
+    <update id="update">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

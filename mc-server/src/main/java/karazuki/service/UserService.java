@@ -1,6 +1,7 @@
 package karazuki.service;
 
 import dto.LoginOrRegisterDTO;
+import dto.UserDTO;
 import entity.User;
 
 public interface UserService {
@@ -16,4 +17,16 @@ public interface UserService {
      * @param loginOrRegisterDTO
      */
     void register(LoginOrRegisterDTO loginOrRegisterDTO);
+
+    /**
+     * 更改用户信息
+     * @param userDTO
+     */
+    void update(UserDTO userDTO);
+
+    /**
+     * 根据id查找用户信息
+     * @param id
+     */
+    User findById(Integer id);
 }
