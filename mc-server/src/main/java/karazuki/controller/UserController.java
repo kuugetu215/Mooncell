@@ -5,12 +5,9 @@ import dto.UserDTO;
 import entity.User;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import karazuki.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import result.Result;
@@ -78,7 +75,7 @@ public class UserController {
     @Operation(summary = "根据id查询用户信息")
     @GetMapping("/user/{id}")
     public Result<User> findById(@PathVariable Integer id){
-        log.info("根据id查询用户信息");
+        log.info("查询当前用户信息");
         User user = userService.findById(id);
         return Result.success(user);
     }
@@ -89,10 +86,23 @@ public class UserController {
      * @return
      */
     @Operation(summary = "更改用户信息")
-    @PutMapping("/user/upadte")
+    @PutMapping("/user")
     public Result update(@RequestBody UserDTO userDTO){
         log.info("更改用户信息");
         userService.update(userDTO);
+        return Result.success();
+    }
+
+    /**
+     * 给予或者撤销用户管理员权限(只有初始用户拥有该权限)
+     * @param id
+     * @return
+     */
+    @Operation(summary = "给予或者撤销用户管理员权限")
+    @PutMapping("/user/{id}")
+    public Result changeAdmin(@PathVariable Integer id){
+        log.info("给予或者撤销用户管理员权限：{}", id);
+        userService.changeAdmin(id);
         return Result.success();
     }
 }

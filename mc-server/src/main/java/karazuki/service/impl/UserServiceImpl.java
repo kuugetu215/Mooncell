@@ -1,5 +1,6 @@
 package karazuki.service.impl;
 
+import context.BaseContext;
 import dto.LoginOrRegisterDTO;
 import dto.UserDTO;
 import entity.User;
@@ -95,5 +96,36 @@ public class UserServiceImpl implements UserService {
     public User findById(Integer id) {
         User user = userMapper.findById(id);
         return user;
+    }
+
+    /**
+     * 给予当前用户管理员权限
+     * @param id
+     */
+    @Override
+    public void changeAdmin(Integer id) {
+        //查询操作用户id是否为最大管理员
+        Integer AdminId = BaseContext.getCurrentId();
+
+        //如果不是，抛出异常；是，则继续进行
+        if (AdminId != 1){
+            throw new RuntimeException("该用户没有该操作权限");
+        }
+
+        //查看当前用户权限类型
+        User user = userMapper.findById(id);
+        if (user == null){
+            throw new RuntimeException("不存在该用户");
+        }
+        Integer userType = user.getUserType();
+        if (userType == 0){
+            //用户为普通用户，修改用户为管理员
+            user.setUserType(1);
+            userMapper.update(user);
+        } else if (userType == 1){
+            //用户为管理员，修改用户为普通用户
+            user.setUserType(0);
+            userMapper.update(user);
+        }
     }
 }

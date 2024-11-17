@@ -29,4 +29,10 @@ public interface UserService {
      * @param id
      */
     User findById(Integer id);
+
+    /**
+     * 给予或者撤销用户管理员权限
+     * @param id
+     */
+    void changeAdmin(Integer id);
 }

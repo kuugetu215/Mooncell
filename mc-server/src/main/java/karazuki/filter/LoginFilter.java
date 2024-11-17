@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
         //判断令牌合法性
         if(!StringUtils.hasLength(jwt)){
             log.info("Token is empty");
-            Result error = Result.error("你还没有登陆.");
+            Result error = Result.error("not login");
             String notLogin = JSONObject.toJSONString(error);
             resp.getWriter().write(notLogin);
             return;
@@ -59,13 +59,13 @@ public class LoginFilter implements Filter {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("解析令牌失败，返回失败信息");
-            Result error = Result.error("登录失败");
+            Result error = Result.error("fail to login");
             String notLogin = JSONObject.toJSONString(error);
             resp.getWriter().write(notLogin);
             return;
         }
         //放行
-        log.info("登陆成功");
+        log.info("login successs");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
