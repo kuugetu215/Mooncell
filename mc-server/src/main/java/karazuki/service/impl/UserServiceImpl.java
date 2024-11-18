@@ -116,13 +116,15 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.findById(id);
         if (user == null){
             throw new RuntimeException("不存在该用户");
+        } else if (user.getId() == 1){
+            throw new RuntimeException("不能修改该用户为普通用户");
         }
         Integer userType = user.getUserType();
         if (userType == 0){
             //用户为普通用户，修改用户为管理员
             user.setUserType(1);
             userMapper.update(user);
-        } else if (userType == 1){
+        } else {
             //用户为管理员，修改用户为普通用户
             user.setUserType(0);
             userMapper.update(user);

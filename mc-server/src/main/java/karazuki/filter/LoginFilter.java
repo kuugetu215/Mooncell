@@ -18,7 +18,7 @@ import utils.JwtUtils;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
     @Override
@@ -36,6 +36,11 @@ public class LoginFilter implements Filter {
         }
         if(url.contains("register")){
             log.info("注册操作");
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+        if(url.contains("doc") || url.contains("swagger")){
+            log.info("测试操作");
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

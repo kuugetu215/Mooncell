@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="karazuki.mapper.ServantMapper">
+
+
+    <select id="page" resultType="vo.ServantPageVO">
+        select s.id, s.image, s.cname, s.jname, s.ename, np.card as npcard, np.type, s.sclass, sd.card, s.side_property, s.way_to_get, sd.atk_90, sd.hp_90
+        from servant s, noble_phantasm np, servant_detail sd
+        <where>
+        s.id = np.sid and s.id = sd.sid
+        <if test="sclasses != null">
+            and s.sclass in
+            <foreach collection="sclasses" item="sclass" separator="," open="(" close=")">
+                #{sclass}
+            </foreach>
+        </if>
+        <if test="ranks != null">
+            and s.rank in
+            <foreach collection="ranks" item="rank" separator="," open="(" close=")">
+                #{rank}
+            </foreach>
+        </if>
+        <if test="cards != null">
+            and sd.card in
+            <foreach collection="cards" item="card" separator="," open="(" close=")">
+                #{card}
+            </foreach>
+        </if>
+        <if test="npcards != null">
+            and np.card in
+            <foreach collection="npcards" item="npcard" separator="," open="(" close=")">
+                #{npcard}
+            </foreach>
+        </if>
+        <if test="types != null">
+            and np.type in
+            <foreach collection="types" item="type" separator="," open="(" close=")">
+                #{type}
+            </foreach>
+        </if>
+        <if test="wayToGets != null">
+            and s.wat_to_get in
+            <foreach collection="wayToGets" item="wtg" separator="," open="(" close=")">
+                #{wtg}
+            </foreach>
+        </if>
+        <if test="search != null">
+            and s.id like concat('%', #{search}, '%')
+            or s.cname like concat('%', #{search}, '%')
+            or s.jname like concat('%', #{search}, '%')
+            or s.ename like concat('%', #{search}, '%')
+        </if>
+        </where>
+        <if test="sort == 0">
+            order by id asc
+        </if>
+        <if test="sort == 1">
+            order by id desc
+        </if>
+        <if test="sort == 2">
+            order by akt_90 asc
+        </if>
+        <if test="sort == 3">
+            order by akt_90 desc
+        </if>
+        <if test="sort == 4">
+            order by hp_90 asc
+        </if>
+        <if test="sort == 5">
+            order by hp_90 desc
+        </if>
+        <if test="sort == null">
+            order by id desc
+        </if>
+    </select>
+</mapper>
