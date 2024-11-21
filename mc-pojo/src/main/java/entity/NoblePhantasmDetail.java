@@ -1,5 +1,8 @@
 package entity;
 
+import lombok.Data;
+
+@Data
 public class NoblePhantasmDetail {
     //详细信息id
     private Integer id;
