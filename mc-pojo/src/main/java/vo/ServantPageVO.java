@@ -32,7 +32,7 @@ public class ServantPageVO {
     private String npcard;
 
     @Schema(description = "从者宝具类型")
-    private String type;
+    private String kind;
 
     @Schema(description = "从者职介")
     private String sclass;

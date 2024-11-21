@@ -4,7 +4,7 @@
 
 
     <select id="page" resultType="vo.ServantPageVO">
-        select s.id, s.image, s.cname, s.jname, s.ename, np.card as npcard, np.type, s.sclass, sd.card, s.side_property, s.way_to_get, sd.atk_90, sd.hp_90
+        select s.id, s.image, s.cname, s.jname, s.ename, np.card as npcard, np.kind, s.sclass, sd.card, s.side_property, s.way_to_get, sd.atk_90, sd.hp_90
         from servant s, noble_phantasm np, servant_detail sd
         <where>
         s.id = np.sid and s.id = sd.sid
@@ -32,10 +32,10 @@
                 #{npcard}
             </foreach>
         </if>
-        <if test="types != null">
-            and np.type in
-            <foreach collection="types" item="type" separator="," open="(" close=")">
-                #{type}
+        <if test="kinds != null">
+            and np.kind in
+            <foreach collection="kinds" item="kind" separator="," open="(" close=")">
+                #{kind}
             </foreach>
         </if>
         <if test="wayToGets != null">
@@ -45,10 +45,10 @@
             </foreach>
         </if>
         <if test="search != null">
-            and s.id like concat('%', #{search}, '%')
+            and (s.id like concat('%', #{search}, '%')
             or s.cname like concat('%', #{search}, '%')
             or s.jname like concat('%', #{search}, '%')
-            or s.ename like concat('%', #{search}, '%')
+            or s.ename like concat('%', #{search}, '%'))
         </if>
         </where>
         <if test="sort == 0">

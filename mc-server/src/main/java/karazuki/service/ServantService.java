@@ -2,6 +2,7 @@ package karazuki.service;
 
 import dto.ServantPageQueryDTO;
 import result.PageResult;
+import vo.ServantVO;
 
 public interface ServantService {
 
@@ -12,4 +13,11 @@ public interface ServantService {
      * @return
      */
     PageResult pageQuery(ServantPageQueryDTO servantPageQueryDTO);
+
+    /**
+     * 从者详细信息查询
+     * @param id
+     * @return
+     */
+    ServantVO findById(Integer id);
 }

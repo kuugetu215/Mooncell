@@ -48,5 +48,5 @@ public class Servant {
     private Character sideProperty;
 
     //获取方式
-    private String watToGet;
+    private String wayToGet;
 }

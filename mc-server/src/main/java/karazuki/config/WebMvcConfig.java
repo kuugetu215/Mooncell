@@ -1,9 +1,13 @@
 package karazuki.config;
  
+import com.github.pagehelper.PageInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
- 
+
+import java.util.Properties;
+
 /**
  * web层配置类,实现静态资源映射，将knife4j相关资源放行，保证生成的接口文档能够正常进行展示
  * @author Hva
@@ -23,5 +27,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    @Bean
+    public PageInterceptor pageHelper() {
+        PageInterceptor pageInterceptor = new PageInterceptor();
+        Properties properties = new Properties();
+        properties.setProperty("offsetAsPageNum","true");
+        properties.setProperty("rowBoundsWithCount","true");
+        properties.setProperty("reasonable","true");
+        properties.setProperty("helperDialect", "mysql");
+        properties.setProperty("supportMethodsArguments","true");
+        properties.setProperty("params","count=countSql");
+        pageInterceptor.setProperties(properties);
+        return pageInterceptor;
     }
 }

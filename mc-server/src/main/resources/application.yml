@@ -71,3 +71,9 @@ knife4j:
     language: zh_cn   #中文
     swagger-model-name: 实体列表   #默认为：Swagger Models
 
+#pagehelper分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params=count: countSql

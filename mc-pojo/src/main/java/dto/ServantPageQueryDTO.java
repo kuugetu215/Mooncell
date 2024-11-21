@@ -26,7 +26,7 @@ public class ServantPageQueryDTO {
     private List<Integer> npcards;
 
     //宝具类型
-    private List<String> types;
+    private List<String> kinds;
 
     //获取途径
     private List<String> wayToGets;
