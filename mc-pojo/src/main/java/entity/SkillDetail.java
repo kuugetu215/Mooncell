@@ -8,5 +8,4 @@ public class SkillDetail {
     private Integer skillId;
     private String description;
     private String value;
-    private Integer rankupNum;
 }

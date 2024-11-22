@@ -1,22 +1,22 @@
-package vo;
+package entity;
 
-import entity.SkillDetail;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class SkillVO {
+public class Skill {
     //技能id
     private Integer id;
 
-    //技能类型 0技能 1职介技能 2追加技能
+    //从者id
+    private Integer sid;
+
+    //技能类型 0技能 1职阶技能 2追加技能
     private Integer skillType;
 
     //技能编号
     private Integer number;
 
-    //充能回合变化
+    //技能充能回合数变化
     private String chargeRank;
 
     //技能中文名
@@ -33,6 +33,4 @@ public class SkillVO {
 
     //强化本id
     private Integer rankId;
-
-    private List<SkillDetail> skillDetails;
 }
