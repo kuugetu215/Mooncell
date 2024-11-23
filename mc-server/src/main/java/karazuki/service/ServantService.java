@@ -1,5 +1,6 @@
 package karazuki.service;
 
+import dto.ServantDTO;
 import dto.ServantPageQueryDTO;
 import result.PageResult;
 import vo.ServantVO;
@@ -20,4 +21,22 @@ public interface ServantService {
      * @return
      */
     ServantVO findById(Integer id);
+
+    /**
+     * 从者信息插入
+     * @param servantDTO
+     */
+    void insert(ServantDTO servantDTO);
+
+    /**
+     * 从者信息更新
+     * @param servantDTO
+     */
+    void update(ServantDTO servantDTO);
+
+    /**
+     * 删除所有从者相关信息
+     * @param id
+     */
+    void delete(Integer id);
 }

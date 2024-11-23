@@ -4,7 +4,7 @@
 
 
     <select id="page" resultType="vo.ServantPageVO">
-        select s.id, s.image, s.cname, s.jname, s.ename, np.card as npcard, np.kind, s.sclass, sd.card, s.side_property, s.way_to_get, sd.atk_90, sd.hp_90
+        select s.id, s.image, s.cname, s.jname, s.ename, np.card as npcard, np.kind, s.sclass, sd.card, s.side_property, s.way_to_get, sd.atk_full, sd.hp_full
         from servant s, noble_phantasm np, servant_detail sd
         <where>
         s.id = np.sid and s.id = sd.sid
@@ -58,19 +58,77 @@
             order by id desc
         </if>
         <if test="sort == 2">
-            order by akt_90 asc
+            order by akt_full asc
         </if>
         <if test="sort == 3">
-            order by akt_90 desc
+            order by akt_full desc
         </if>
         <if test="sort == 4">
-            order by hp_90 asc
+            order by hp_full asc
         </if>
         <if test="sort == 5">
-            order by hp_90 desc
+            order by hp_full desc
         </if>
         <if test="sort == null">
             order by id desc
         </if>
     </select>
+
+    <insert id="insert">
+        insert into servant (id, image, cname, jname, ename, sclass, `rank`, illustrator, cv, sex, height, weight, property, side_property, way_to_get)
+        values (#{id}, #{image}, #{cname}, #{jname}, #{ename}, #{sclass}, #{rank}, #{illustrator}, #{cv}, #{sex}, #{height}, #{weight}, #{property}, #{sideProperty}, #{wayToGet})
+    </insert>
+
+    <update id="update">
+        update servant
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="cname != null">
+                cname = #{cname},
+            </if>
+            <if test="jname != null">
+                jname = #{jname},
+            </if>
+            <if test="ename">
+                ename = #{ename},
+            </if>
+            <if test="sclass != null">
+                sclass = #{sclass},
+            </if>
+            <if test="rank != null">
+                `rank` = #{rank},
+            </if>
+            <if test="illustrator != null">
+                illustrator = #{illustrator},
+            </if>
+            <if test="cv != null">
+                cv = #{cv},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="height != null">
+                height = #{height},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="property != null">
+                property = #{property},
+            </if>
+            <if test="sideProperty != null">
+                side_property = #{sideProperty},
+            </if>
+            <if test="wayToGet != null">
+                way_to_get = #{wayToGet}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

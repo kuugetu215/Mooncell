@@ -1,25 +1,18 @@
-package vo;
+package dto;
 
 import entity.ServantImage;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Schema(description = "从者详细信息")
-public class ServantVO {
+public class ServantDTO {
+
     //从者id
     private Integer id;
-    //从者立绘
-    private List<ServantImage> images;
+    //从者头像
+    private String image;
     //从者中文名
     private String cname;
     //从者日文名
@@ -53,17 +46,10 @@ public class ServantVO {
     //能力
     //atk
     private Integer atk1;
-    private Integer aktFull;
+    private Integer atkFull;
     private Integer atk90;
     private Integer atk100;
     private Integer atk120;
-
-    //职介补正后atk
-    private Integer atk1Cor;
-    private Integer atkFullCor;
-    private Integer atk90Cor;
-    private Integer atk100Cor;
-    private Integer atk120Cor;
 
     //hp
     private Integer hp1;
@@ -108,10 +94,4 @@ public class ServantVO {
 
     //实装时间
     private LocalDate createTime;
-
-//    //宝具信息
-//    private List<NoblePhantasmVO> noblePhantasmVOS;
-//
-//    //技能信息
-//    private List<SkillVO> skillVOS;
 }

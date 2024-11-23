@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="karazuki.mapper.ServantDetailMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into servant_detail (sid, atk_1, hp_1, atk_full, hp_full, atk_90, hp_90, atk_100, hp_100, atk_120, hp_120, six_demention, card, q_hit, a_hit, b_hit, ex_hit, np_hit, np_rate, hit_np, star_rate, death_rate, star_assign, chara, is_human_form, is_ea_effective, is_pigchange_effective, create_time)
+        values (#{sid}, #{atk1}, #{hp1}, #{atkFull}, #{hpFull}, #{atk90}, #{hp90}, #{atk100}, #{hp90}, #{atk120}, #{hp120}, #{sixDemention}, #{card}, #{qHit}, #{aHit}, #{bHit}, #{exHit}, #{npHit}, #{npRate}, #{hitNp}, #{starRate}, #{deathRate}, #{starAssign}, #{chara}, #{isHumanForm}, #{isEaEffective}, #{isPigchangeEffective}, #{createTime})
+    </insert>
+    <update id="update">
+        update servant_detail
+        <set>
+            <if test="atk1 != null">
+                atk_1 = #{atk1},
+            </if>
+            <if test="hp1 != null">
+                hp_1 = #{hp1},
+            </if>
+            <if test="atkFull != null">
+                atk_full = #{atkFull},
+            </if>
+            <if test="hpFull != null">
+                hp_full = #{hpFull},
+            </if>
+            <if test="atk90 != null">
+                atk_90 = #{atk90},
+            </if>
+            <if test="hp90 != null">
+                hp_90 = #{hp90},
+            </if>
+            <if test="atk100 != null">
+                atk_100 = #{atk100},
+            </if>
+            <if test="hp100 != null">
+                hp_100 = #{hp100},
+            </if>
+            <if test="atk120 != null">
+                atk_120 = #{atk120},
+            </if>
+            <if test="hp120 != null">
+                hp_120 = #{hp120},
+            </if>
+            <if test="sixDemention">
+                six_demention = #{sixDemention},
+            </if>
+            <if test="card != null">
+                card = #{card},
+            </if>
+            <if test="qHit != null">
+                q_hit = #{qHit},
+            </if>
+            <if test="aHit != null">
+                a_hit = #{aHit},
+            </if>
+            <if test="bHit != null">
+                b_hit = #{bHit},
+            </if>
+            <if test="npHit != null">
+                np_hit = #{npHit},
+            </if>
+            <if test="npRate != null">
+                np_rate = #{npRate},
+            </if>
+            <if test="hitNp != null">
+                hit_np = #{hitNp},
+            </if>
+            <if test="starRate != null">
+                star_rate = #{starRate},
+            </if>
+            <if test="starAssign != null">
+                star_assign = #{starAssign},
+            </if>
+            <if test="chara != null">
+                chara = #{chara},
+            </if>
+            <if test="isHumanForm != null">
+                is_human_form = #{isHumanForm},
+            </if>
+            <if test="isEaEffective != null">
+                is_ea_effective = #{isEaEffective},
+            </if>
+            <if test="isPigchangeEffective != null">
+                is_pigchange_effective = #{isPigchangeEffective},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+            where sid = #{sid}
+        </set>
+    </update>
+</mapper>

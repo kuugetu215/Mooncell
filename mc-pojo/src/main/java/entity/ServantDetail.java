@@ -21,12 +21,14 @@ public class ServantDetail {
     //能力
     //atk
     private Integer atk1;
+    private Integer atkFull;
     private Integer atk90;
     private Integer atk100;
     private Integer atk120;
 
     //hp
     private Integer hp1;
+    private Integer hpFull;
     private Integer hp90;
     private Integer hp100;
     private Integer hp120;

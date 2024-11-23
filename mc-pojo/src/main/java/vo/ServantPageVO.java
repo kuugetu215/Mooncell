@@ -46,9 +46,9 @@ public class ServantPageVO {
     @Schema(description = "从者获取方式")
     private String wayToGet;
 
-    @Schema(description = "从者90级atk")
-    private Integer atk90;
+    @Schema(description = "从者满级atk")
+    private Integer atkFull;
 
-    @Schema(description = "从者90级hp")
-    private Integer hp90;
+    @Schema(description = "从者满级hp")
+    private Integer hpFull;
 }

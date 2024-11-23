@@ -9,4 +9,8 @@ public interface ServantDetailMapper {
 
     @Select("select * from servant_detail where sid = #{sid}")
     ServantDetail findBySid(Integer sid);
+
+    void insert(ServantDetail servantDetail);
+
+    void update(ServantDetail servantDetail);
 }
