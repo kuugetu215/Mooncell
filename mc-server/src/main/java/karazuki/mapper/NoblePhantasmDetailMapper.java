@@ -11,4 +11,6 @@ public interface NoblePhantasmDetailMapper {
 
     @Select("select * from noble_phantasm_detail where nid = #{nid}")
     List<NoblePhantasmDetail> findByNId(Integer nid);
+
+    void insertBatch(List<NoblePhantasmDetail> noblePhantasmDetailList);
 }

@@ -12,4 +12,5 @@ public interface SkillDetailMapper {
     @Select("select * from skill_detail where skill_id = #{skillId}")
     List<SkillDetail> findBySkillId(Integer skillId);
 
+    void insertBatch(List<SkillDetail> skillDetailList);
 }

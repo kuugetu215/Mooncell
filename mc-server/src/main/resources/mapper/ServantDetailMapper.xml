@@ -6,6 +6,8 @@
         insert into servant_detail (sid, atk_1, hp_1, atk_full, hp_full, atk_90, hp_90, atk_100, hp_100, atk_120, hp_120, six_demention, card, q_hit, a_hit, b_hit, ex_hit, np_hit, np_rate, hit_np, star_rate, death_rate, star_assign, chara, is_human_form, is_ea_effective, is_pigchange_effective, create_time)
         values (#{sid}, #{atk1}, #{hp1}, #{atkFull}, #{hpFull}, #{atk90}, #{hp90}, #{atk100}, #{hp90}, #{atk120}, #{hp120}, #{sixDemention}, #{card}, #{qHit}, #{aHit}, #{bHit}, #{exHit}, #{npHit}, #{npRate}, #{hitNp}, #{starRate}, #{deathRate}, #{starAssign}, #{chara}, #{isHumanForm}, #{isEaEffective}, #{isPigchangeEffective}, #{createTime})
     </insert>
+
+
     <update id="update">
         update servant_detail
         <set>

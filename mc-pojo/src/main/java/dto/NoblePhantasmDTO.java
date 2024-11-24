@@ -1,9 +1,12 @@
-package entity;
+package dto;
 
+import entity.NoblePhantasmDetail;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class NoblePhantasm {
+public class NoblePhantasmDTO {
     //宝具id
     private Integer id;
 
@@ -22,7 +25,7 @@ public class NoblePhantasm {
     //英文名
     private String ename;
 
-    //宝具类型(单体、群体、辅助)
+    //宝具类型(单体、全体、辅助)
     private String kind;
 
     //宝具等级
@@ -36,4 +39,8 @@ public class NoblePhantasm {
 
     //强化本id
     private Integer rankupId;
+
+    //宝具详细信息
+    private List<NoblePhantasmDetail> noblePhantasmDetailS;
+
 }
