@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vo.NoblePhantasmVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,6 +63,36 @@ public class NoblePhantasmServiceImpl implements NoblePhantasmService {
                 noblePhantasmDetail.setNid(nid);
             });
             noblePhantasmDetailMapper.insertBatch(noblePhantasmDetailList);
+        }
+    }
+
+    /**
+     * 从者宝具信息更新
+     * @param noblePhantasmDTO
+     */
+    @Override
+    public void update(NoblePhantasmDTO noblePhantasmDTO) {
+        //更新宝具表
+        NoblePhantasm noblePhantasm = new NoblePhantasm();
+        BeanUtils.copyProperties(noblePhantasmDTO, noblePhantasm);
+        noblePhantasmMapper.update(noblePhantasm);
+
+        //更新宝具详情表
+        List<NoblePhantasmDetail> noblePhantasmDetailList = noblePhantasmDTO.getNoblePhantasmDetailS();
+        if (noblePhantasmDetailList != null && noblePhantasmDetailList.size() > 0){
+            for (NoblePhantasmDetail noblePhantasmDetail : noblePhantasmDetailList){
+                //如果信息已存在，更新
+                NoblePhantasmDetail npd = noblePhantasmDetailMapper.findByNIdAndEffect(noblePhantasmDetail.getNid(), noblePhantasmDetail.getEffect());
+                if (npd != null){
+                    noblePhantasmDetailMapper.update(noblePhantasmDetail);
+                } else {
+                    //如果信息不存在，进行插入操作
+                    List<NoblePhantasmDetail> npds = new ArrayList<>();
+                    npds.add(noblePhantasmDetail);
+                    noblePhantasmDetailMapper.insertBatch(npds);
+                }
+
+            }
         }
     }
 }

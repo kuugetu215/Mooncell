@@ -11,4 +11,6 @@ public interface NoblePhantasmMapper {
     NoblePhantasm findBySid(Integer sid);
 
     void insert(NoblePhantasm noblePhantasm);
+
+    void update(NoblePhantasm noblePhantasm);
 }

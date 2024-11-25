@@ -8,4 +8,44 @@
         values
         (#{sid}, #{card}, #{cname}, #{hname}, #{kname}, #{ename}, #{kind}, #{rank}, #{type}, #{rankupNum}, #{rankupId})
     </insert>
+
+    <update id="update">
+        update noble_phantasm
+        <set>
+            <if test="sid != null">
+                sid = #{sid}
+            </if>
+            <if test="card != null">
+                card = #{card},
+            </if>
+            <if test="cname != null">
+                cname = #{cname},
+            </if>
+            <if test="hname != null">
+                hname = #{hname},
+            </if>
+            <if test="kname != null">
+                kname = #{kname},
+            </if>
+            <if test="ename != null">
+                ename = #{ename},
+            </if>
+            <if test="kind != null">
+                kind = #{kind},
+            </if>
+            <if test="rank != null">
+                `rank` = #{rank},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="rankupNum != null">
+                rankup_num = #{rankupNum},
+            </if>
+            <if test="rankupId != null">
+                rankup_id = #{rankupId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

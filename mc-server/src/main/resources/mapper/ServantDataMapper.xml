@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="karazuki.mapper.ServantDataMapper">
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into servant_data (sid, data_key, `condition`, data_text, data_text_j, open_id)
+        values
+        (#{sid}, #{dataKey}, #{condition}, #{dataText}, #{dataTextJ}, #{openId})
+    </insert>
+</mapper>

@@ -45,4 +45,17 @@ public class NoblePhantasmController {
         return Result.success();
     }
 
+    /**
+     * 从者宝具信息更新
+     * @param noblePhantasmDTO
+     * @return
+     */
+    @Operation(description = "从者宝具信息更新")
+    @PutMapping
+    public Result updateNp(@RequestBody NoblePhantasmDTO noblePhantasmDTO){
+        log.info("从者宝具信息更新");
+        noblePhantasmService.update(noblePhantasmDTO);
+        return Result.success();
+    }
+
 }

@@ -10,4 +10,5 @@
             (#{npd.nid}, #{npd.effect}, #{npd.effectValue})
         </foreach>
     </insert>
+
 </mapper>

@@ -17,4 +17,10 @@ public interface NoblePhantasmService {
      * @param noblePhantasmDTO
      */
     void insert(NoblePhantasmDTO noblePhantasmDTO);
+
+    /**
+     * 从者宝具信息更新
+     * @param noblePhantasmDTO
+     */
+    void update(NoblePhantasmDTO noblePhantasmDTO);
 }
