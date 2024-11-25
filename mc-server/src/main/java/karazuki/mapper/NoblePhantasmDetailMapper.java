@@ -18,6 +18,5 @@ public interface NoblePhantasmDetailMapper {
     @Select("select * from noble_phantasm_detail where nid = #{nid} and effect = #{effect}")
     NoblePhantasmDetail findByNIdAndEffect(Integer nid, String effect);
 
-    @Update("update noble_phantasm_detail set effect_value = #{effectValue} where nid = #{nid} and effect = #{effect}")
     void update(NoblePhantasmDetail noblePhantasmDetail);
 }

@@ -11,4 +11,20 @@
         </foreach>
     </insert>
 
+    <update id="update">
+        update noble_phantasm_detail
+        <set>
+            <if test="nid != null">
+                nid = #{nid},
+            </if>
+            <if test="effect != null">
+                effect = #{effect},
+            </if>
+            <if test="effectValue">
+                effect_value = #{effectValue}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

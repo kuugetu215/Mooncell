@@ -19,4 +19,10 @@ public interface SkillService {
      * @param skillDTOList
      */
     void insert(List<SkillDTO> skillDTOList);
+
+    /**
+     * 更新技能信息
+     * @param skillDTOList
+     */
+    void update(List<SkillDTO> skillDTOList);
 }

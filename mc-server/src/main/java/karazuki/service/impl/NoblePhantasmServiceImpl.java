@@ -81,17 +81,7 @@ public class NoblePhantasmServiceImpl implements NoblePhantasmService {
         List<NoblePhantasmDetail> noblePhantasmDetailList = noblePhantasmDTO.getNoblePhantasmDetailS();
         if (noblePhantasmDetailList != null && noblePhantasmDetailList.size() > 0){
             for (NoblePhantasmDetail noblePhantasmDetail : noblePhantasmDetailList){
-                //如果信息已存在，更新
-                NoblePhantasmDetail npd = noblePhantasmDetailMapper.findByNIdAndEffect(noblePhantasmDetail.getNid(), noblePhantasmDetail.getEffect());
-                if (npd != null){
-                    noblePhantasmDetailMapper.update(noblePhantasmDetail);
-                } else {
-                    //如果信息不存在，进行插入操作
-                    List<NoblePhantasmDetail> npds = new ArrayList<>();
-                    npds.add(noblePhantasmDetail);
-                    noblePhantasmDetailMapper.insertBatch(npds);
-                }
-
+                noblePhantasmDetailMapper.update(noblePhantasmDetail);
             }
         }
     }

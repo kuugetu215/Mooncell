@@ -81,4 +81,13 @@ public class SkillServiceImpl implements SkillService {
             }
         }
     }
+
+    /**
+     * 更新技能信息
+     * @param skillDTOList
+     */
+    @Override
+    public void update(List<SkillDTO> skillDTOList) {
+
+    }
 }

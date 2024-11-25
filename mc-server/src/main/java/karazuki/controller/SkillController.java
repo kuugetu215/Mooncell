@@ -45,4 +45,16 @@ public class SkillController {
         skillService.insert(skillDTOList);
         return Result.success();
     }
+
+    /**
+     * 修改技能信息
+     * @return
+     */
+    @Operation(description = "修改技能信息")
+    @PutMapping("")
+    public Result updateSkill(@RequestBody List<SkillDTO> skillDTOList) {
+        log.info("修改技能信息:{}", skillDTOList);
+        skillService.update(skillDTOList);
+        return Result.success();
+    }
 }
