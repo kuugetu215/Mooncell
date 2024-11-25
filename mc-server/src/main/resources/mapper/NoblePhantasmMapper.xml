@@ -13,7 +13,7 @@
         update noble_phantasm
         <set>
             <if test="sid != null">
-                sid = #{sid}
+                sid = #{sid},
             </if>
             <if test="card != null">
                 card = #{card},
