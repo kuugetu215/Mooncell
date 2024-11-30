@@ -7,9 +7,11 @@ import dto.ServantPageQueryDTO;
 import entity.Servant;
 import entity.ServantDetail;
 import entity.ServantImage;
+import entity.SpecialAttack;
 import karazuki.mapper.ServantClassMapper;
 import karazuki.mapper.ServantDetailMapper;
 import karazuki.mapper.ServantMapper;
+import karazuki.mapper.SpecialAttackMapper;
 import karazuki.service.ServantService;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import result.PageResult;
 import vo.ServantPageVO;
 import vo.ServantVO;
+import vo.SpecialAttackSearchVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -36,6 +40,9 @@ public class ServantServiceImpl implements ServantService {
 
     @Autowired
     private ServantClassMapper servantClassMapper;
+
+    @Autowired
+    private SpecialAttackMapper specialAttackMapper;
 
     /**
      * 从者列表分页查询
@@ -140,5 +147,79 @@ public class ServantServiceImpl implements ServantService {
         //删除从者详情表数据
 
         //TODO 删除其他关联表数据
+    }
+
+    @Override
+    public List<SpecialAttackSearchVO> saSearch(Integer id) {
+        //特攻范围 0职介特攻 1副属性特攻 2属性特攻 3通常特性特攻 4状态特攻 5自buff特攻 6详情表特殊查询
+
+        //先根据id在从者表查询从者相关属性 职介、副属性、属性、特性、是否被ea特攻、性别
+        Servant servant = servantMapper.findById(id);
+        ServantDetail servantDetail = servantDetailMapper.findBySid(id);
+
+        //将特性经过处理再封装到一个特性(String)类中
+        List<String> saSearch = new ArrayList<>();
+
+        //0 职介信息
+        String sclass = servant.getSclass();
+        saSearch.add(sclass);
+        if (sclass.equals("saber")||sclass.equals("lancer")||sclass.equals("archer")||sclass.equals("rider")||sclass.equals("caster")||sclass.equals("assassin")||sclass.equals("berserker")){
+            saSearch.add("七骑士");
+        }
+
+        //1副属性 天地人
+        saSearch.add("" + servant.getSideProperty());
+
+        //2属性
+        saSearch.add(servant.getProperty());
+
+        //3通常特性
+        String chara = servantDetail.getChara();
+        String[] charas = chara.split(",");
+        for (String s : charas){
+            saSearch.add(s);
+        }
+
+        //6详情表特殊查询
+        //人形 ea特攻 性别  特殊插入：从者
+
+        saSearch.add("从者");
+
+        if (servantDetail.getIsHumanForm() == 1){
+            saSearch.add("人形");
+        }
+
+        if(servantDetail.getIsEaEffective() == 1){
+            saSearch.add("对EA特攻");
+        }
+
+        Integer sex = servant.getSex();
+        if (sex == 0){
+            saSearch.add("男性");
+        } else if (sex == 1){
+            saSearch.add("女性");
+        }
+
+        //查询特攻表是否具有相关信息
+        List<SpecialAttack> specialAttackList = specialAttackMapper.findByCharas(saSearch);
+
+        List<SpecialAttackSearchVO> specialAttackSearchVOS = new ArrayList<>();
+
+        for (SpecialAttack specialAttack : specialAttackList){
+
+            Servant s = servantMapper.findById(specialAttack.getSid());
+            SpecialAttackSearchVO specialAttackSearchVO = new SpecialAttackSearchVO();
+            BeanUtils.copyProperties(specialAttack, specialAttackSearchVO);
+
+            //TODO 当前从者表中信息不足，相关信息暂时不进行封装
+
+//            specialAttackSearchVO.setSclass(s.getSclass());
+//            specialAttackSearchVO.setImage(s.getImage());
+//            specialAttackSearchVO.setName(s.getCname());
+
+            specialAttackSearchVOS.add(specialAttackSearchVO);
+        }
+
+        return specialAttackSearchVOS;
     }
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import result.PageResult;
 import result.Result;
 import vo.ServantVO;
+import vo.SpecialAttackSearchVO;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -46,6 +49,19 @@ public class ServantController {
         log.info("从者详细信息查询:{}", id);
         ServantVO servantVO = servantService.findById(id);
         return Result.success(servantVO);
+    }
+
+    /**
+     * 查询对该从者特攻的从者
+     * @param id
+     * @return
+     */
+    @Operation(description = "查询对该从者特攻的从者")
+    @GetMapping("/{id}/saSearch")
+    public Result specialAttackData(@PathVariable Integer id){
+        log.info("查询对该从者特攻的从者");
+        List<SpecialAttackSearchVO> specialAttackSearchVOS = servantService.saSearch(id);
+        return Result.success(specialAttackSearchVOS);
     }
 
     /**

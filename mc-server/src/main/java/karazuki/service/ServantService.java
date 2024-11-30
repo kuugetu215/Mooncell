@@ -4,6 +4,9 @@ import dto.ServantDTO;
 import dto.ServantPageQueryDTO;
 import result.PageResult;
 import vo.ServantVO;
+import vo.SpecialAttackSearchVO;
+
+import java.util.List;
 
 public interface ServantService {
 
@@ -39,4 +42,11 @@ public interface ServantService {
      * @param id
      */
     void delete(Integer id);
+
+    /**
+     * 查询对该从者特攻的从者
+     * @param id
+     * @return
+     */
+    List<SpecialAttackSearchVO> saSearch(Integer id);
 }
