@@ -17,23 +17,4 @@ import java.util.List;
 @Slf4j
 class McServerApplicationTests {
 
-    @Autowired
-    private ServantMapper servantMapper;
-
-    @Test
-
-    void contextLoads() {
-        ServantPageQueryDTO servantPageQueryDTO = new ServantPageQueryDTO();
-        servantPageQueryDTO.setPage(1);
-        servantPageQueryDTO.setPageSize(10);
-        List<String> stringList = new ArrayList<>();
-        stringList.add("saber");
-        stringList.add("lancer");
-        servantPageQueryDTO.setSclass(stringList);
-        servantPageQueryDTO.setSort(0);
-        PageHelper.startPage(servantPageQueryDTO.getPage(), servantPageQueryDTO.getPageSize());
-        Page<ServantPageVO> page = servantMapper.page(servantPageQueryDTO);
-        log.info("{}", page);
-    }
-
 }

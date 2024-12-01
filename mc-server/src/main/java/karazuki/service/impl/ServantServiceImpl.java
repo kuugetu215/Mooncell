@@ -171,7 +171,12 @@ public class ServantServiceImpl implements ServantService {
         saSearch.add("" + servant.getSideProperty());
 
         //2属性
-        saSearch.add(servant.getProperty());
+        String property = servant.getProperty();
+        saSearch.add(property);
+        String[] prs = property.split("·");
+        for (String p : prs){
+            saSearch.add(p);
+        }
 
         //3通常特性
         String chara = servantDetail.getChara();

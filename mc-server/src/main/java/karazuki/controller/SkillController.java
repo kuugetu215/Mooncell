@@ -34,6 +34,8 @@ public class SkillController {
         return Result.success(skillVOList);
     }
 
+    //TODO 自动插入特攻表
+
     /**
      * 插入技能信息
      * @return
