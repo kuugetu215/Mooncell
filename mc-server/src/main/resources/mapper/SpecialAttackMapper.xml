@@ -12,4 +12,9 @@
             </foreach>
         </where>
     </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into special_attack (sid, type, obj)
+        values (#{sid}, #{type}, #{obj})
+    </insert>
 </mapper>

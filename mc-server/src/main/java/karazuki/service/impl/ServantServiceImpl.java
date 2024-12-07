@@ -163,7 +163,7 @@ public class ServantServiceImpl implements ServantService {
         //0 职介信息
         String sclass = servant.getSclass();
         saSearch.add(sclass);
-        if (sclass.equals("saber")||sclass.equals("lancer")||sclass.equals("archer")||sclass.equals("rider")||sclass.equals("caster")||sclass.equals("assassin")||sclass.equals("berserker")){
+        if (sclass.equals("Saber")||sclass.equals("Lancer")||sclass.equals("Archer")||sclass.equals("Rider")||sclass.equals("Caster")||sclass.equals("Assassin")||sclass.equals("Berserker")){
             saSearch.add("七骑士");
         }
 

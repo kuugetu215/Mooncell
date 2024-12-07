@@ -3,8 +3,10 @@ package karazuki.service.impl;
 import dto.SkillDTO;
 import entity.Skill;
 import entity.SkillDetail;
+import entity.SpecialAttack;
 import karazuki.mapper.SkillDetailMapper;
 import karazuki.mapper.SkillMapper;
+import karazuki.mapper.SpecialAttackMapper;
 import karazuki.service.SkillService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class SkillServiceImpl implements SkillService {
 
     @Autowired
     private SkillDetailMapper skillDetailMapper;
+
+    @Autowired
+    private SpecialAttackMapper specialAttackMapper;
 
     /**
      * 根据从者id查询技能信息
@@ -76,6 +81,35 @@ public class SkillServiceImpl implements SkillService {
             if (skillDetailList != null && skillDetailList.size() > 0){
                 skillDetailList.forEach(skillDetail -> {
                     skillDetail.setSkillId(skill.getId());
+                    String sa = skillDetail.getDescription();
+                    if (sa.contains("特攻")){
+                        int start = sa.indexOf("〔");
+                        int end = sa.indexOf("〕");
+                        String obj = sa.substring(start + 1, end);
+                        SpecialAttack specialAttack = SpecialAttack.builder().
+                                sid(skillDTO.getSid()).
+                                type(0).
+                                build();
+
+                        if (obj.contains("之力")){
+                            if (obj.contains("天")){
+                                specialAttack.setObj("天");
+                                specialAttackMapper.insert(specialAttack);
+                            }
+                            if (obj.contains("地")){
+                                specialAttack.setObj("地");
+                                specialAttackMapper.insert(specialAttack);
+                            }
+                            if (obj.contains("人")){
+                                specialAttack.setObj("人");
+                                specialAttackMapper.insert(specialAttack);
+                            }
+                        } else {
+                            specialAttack.setObj(obj);
+                            specialAttackMapper.insert(specialAttack);
+                        }
+
+                    }
                 });
                 skillDetailMapper.insertBatch(skillDetailList);
             }
