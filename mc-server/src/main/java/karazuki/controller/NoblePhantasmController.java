@@ -33,7 +33,6 @@ public class NoblePhantasmController {
     }
 
 
-    //TODO 自动插入特攻表
     /**
      * 插入从者宝具数据
      * @param noblePhantasmDTO
