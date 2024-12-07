@@ -1,5 +1,6 @@
 package karazuki.service.impl;
 
+import dto.SpecialAttackDTO;
 import entity.Servant;
 import entity.SpecialAttack;
 import karazuki.mapper.ServantMapper;
@@ -45,5 +46,21 @@ public class SpecialAttackServiceImpl implements SpecialAttackService {
         }
 
         return specialAttackSearchVOS;
+    }
+
+    @Override
+    public void insert(SpecialAttackDTO specialAttackDTO) {
+        SpecialAttack specialAttack = new SpecialAttack();
+        BeanUtils.copyProperties(specialAttackDTO, specialAttack);
+        if(specialAttackMapper.find(specialAttack)){
+            throw new RuntimeException("该项已存在");
+        }
+        specialAttackMapper.insert(specialAttack);
+    }
+
+    @Override
+    public void update(SpecialAttack specialAttack) {
+
+        specialAttackMapper.update(specialAttack);
     }
 }

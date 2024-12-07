@@ -17,4 +17,20 @@
         insert into special_attack (sid, type, obj)
         values (#{sid}, #{type}, #{obj})
     </insert>
+
+    <update id="update">
+        update special_attack
+        <set>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="obj != null">
+                obj = #{obj}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

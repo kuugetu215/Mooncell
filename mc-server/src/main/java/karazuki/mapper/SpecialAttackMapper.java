@@ -17,4 +17,9 @@ public interface SpecialAttackMapper {
 
 
     void insert(SpecialAttack specialAttack);
+
+    void update(SpecialAttack specialAttack);
+
+    @Select("select * from special_attack where id = #{id} and sid = #{sid} and type = #{type} and obj = #{obj}")
+    boolean find(SpecialAttack specialAttack);
 }
