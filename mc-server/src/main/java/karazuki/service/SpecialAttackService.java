@@ -12,4 +12,6 @@ public interface SpecialAttackService {
     void insert(SpecialAttackDTO specialAttackDTO);
 
     void update(SpecialAttack specialAttack);
+
+    void delete(Integer id);
 }

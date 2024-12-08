@@ -57,4 +57,16 @@ public class SpecialAttackController {
         specialAttackService.update(specialAttack);
         return Result.success();
     }
+
+    /**
+     * 手动删除特攻信息
+     * @return
+     */
+    @Operation(description = "手动删除特攻信息")
+    @DeleteMapping("/{id}")
+    public Result saDelete(@PathVariable Integer id){
+        log.info("手动删除特攻信息");
+        specialAttackService.delete(id);
+        return Result.success();
+    }
 }

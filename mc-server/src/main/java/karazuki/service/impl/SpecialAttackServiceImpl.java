@@ -63,4 +63,9 @@ public class SpecialAttackServiceImpl implements SpecialAttackService {
 
         specialAttackMapper.update(specialAttack);
     }
+
+    @Override
+    public void delete(Integer id) {
+        specialAttackMapper.delete(id);
+    }
 }
