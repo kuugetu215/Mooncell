@@ -47,4 +47,16 @@ public class ServantDataController {
         return Result.success();
     }
 
+    /**
+     * 修改从者资料
+     * @return
+     */
+    @Operation(description = "修改从者资料")
+    @PutMapping
+    public Result updateData(@RequestBody ServantDataDTO servantDataDTO){
+        log.info("修改从者资料");
+        servantDataService.update(servantDataDTO);
+        return Result.success();
+    }
+
 }

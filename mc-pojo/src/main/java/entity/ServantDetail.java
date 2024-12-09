@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -72,4 +73,10 @@ public class ServantDetail {
 
     //实装时间
     private LocalDate createTime;
+
+    //信息更新时间
+    private LocalDateTime updateTime;
+
+    //更新用户id
+    private Integer updateUser;
 }

@@ -36,11 +36,9 @@ public class SpecialAttackServiceImpl implements SpecialAttackService {
             SpecialAttackSearchVO specialAttackSearchVO = new SpecialAttackSearchVO();
             BeanUtils.copyProperties(specialAttack, specialAttackSearchVO);
 
-            //TODO 当前从者表中信息不足，相关信息暂时不进行封装
-
-//            specialAttackSearchVO.setSclass(s.getSclass());
-//            specialAttackSearchVO.setImage(s.getImage());
-//            specialAttackSearchVO.setName(s.getCname());
+            specialAttackSearchVO.setSclass(s.getSclass());
+            specialAttackSearchVO.setImage(s.getImage());
+            specialAttackSearchVO.setName(s.getCname());
 
             specialAttackSearchVOS.add(specialAttackSearchVO);
         }

@@ -18,7 +18,7 @@ import utils.JwtUtils;
 import java.io.IOException;
 
 @Slf4j
-//@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
     @Override

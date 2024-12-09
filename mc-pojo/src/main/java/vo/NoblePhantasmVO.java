@@ -16,7 +16,7 @@ public class NoblePhantasmVO {
     //强化本id
     private Integer rankupId;
 
-    //TODO 更改成为强化本/幕间物语信息
+    //TODO 强化本id更改成为强化本/幕间物语信息
     //private RankupInstance
 
     //宝具色卡

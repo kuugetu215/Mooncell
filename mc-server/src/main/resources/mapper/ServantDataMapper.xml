@@ -8,4 +8,29 @@
         values
         (#{sid}, #{dataKey}, #{condition}, #{dataText}, #{dataTextJ}, #{openId})
     </insert>
+
+    <update id="update">
+        update servant_data
+        <set>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+            <if test="dataKey != null">
+                data_key = #{dataKey},
+            </if>
+            <if test="condition != null">
+                `condition` = #{condition},
+            </if>
+            <if test="dataText != null">
+                data_text = #{dataText},
+            </if>
+            <if test="dateTextJ != null">
+                data_text_j = #{dataTextJ},
+            </if>
+            <if test="openId != null">
+                open_id = #{openId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

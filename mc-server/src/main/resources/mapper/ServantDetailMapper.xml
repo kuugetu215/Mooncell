@@ -84,9 +84,15 @@
                 is_pigchange_effective = #{isPigchangeEffective},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime}
+                create_time = #{createTime},
             </if>
-            where sid = #{sid}
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser}
+            </if>
         </set>
+        where sid = #{sid}
     </update>
 </mapper>

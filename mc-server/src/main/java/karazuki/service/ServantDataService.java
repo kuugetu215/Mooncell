@@ -19,4 +19,10 @@ public interface ServantDataService {
      * @param servantDataDTOList
      */
     void insertBatch(List<ServantDataDTO> servantDataDTOList);
+
+    /**
+     * 更新从者资料
+     * @param servantDataDTO
+     */
+    void update(ServantDataDTO servantDataDTO);
 }

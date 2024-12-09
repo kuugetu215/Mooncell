@@ -51,4 +51,15 @@ public class ServantDataServiceImpl implements ServantDataService {
             servantDataMapper.insert(servantData);
         }
     }
+
+    /**
+     * 更新从者资料
+     * @param servantDataDTO
+     */
+    @Override
+    public void update(ServantDataDTO servantDataDTO) {
+        ServantData servantData = new ServantData();
+        BeanUtils.copyProperties(servantDataDTO, servantData);
+        servantDataMapper.update(servantData);
+    }
 }

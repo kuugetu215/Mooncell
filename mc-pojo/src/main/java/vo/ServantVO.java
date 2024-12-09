@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -108,6 +109,12 @@ public class ServantVO {
 
     //实装时间
     private LocalDate createTime;
+
+    //更新时间
+    private LocalDateTime updateTime;
+
+    //更新用户id
+    private Integer updateUser;
 
 //    //宝具信息
 //    private List<NoblePhantasmVO> noblePhantasmVOS;

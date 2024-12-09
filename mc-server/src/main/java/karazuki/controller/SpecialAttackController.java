@@ -50,7 +50,7 @@ public class SpecialAttackController {
      * 手动更新特攻信息
      * @return
      */
-    @PostMapping
+    @PutMapping
     @Operation(description = "手动更新特攻信息")
     public Result saUpdate(@RequestBody SpecialAttack specialAttack){
         log.info("手动更新特攻信息：{}", specialAttack);
