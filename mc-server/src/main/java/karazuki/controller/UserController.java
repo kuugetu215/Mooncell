@@ -6,6 +6,7 @@ import entity.User;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpSession;
 import karazuki.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,13 @@ public class UserController {
      */
     @PostMapping("/login")
     @Operation(summary = "用户登录")
-    public Result<LoginVO> login(@RequestBody LoginOrRegisterDTO loginOrRegisterDto){
+    public Result<LoginVO> login(@RequestBody LoginOrRegisterDTO loginOrRegisterDto, HttpSession session){
         log.info("用户登录");
 
         //根据用户名、密码查询并返回用户信息
         User user = userService.login(loginOrRegisterDto);
+
+        session.setAttribute("uid", user.getId());
 
         Map<String, String> map = new HashMap<>();
         map.put("id", "" + user.getId());

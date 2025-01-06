@@ -73,7 +73,19 @@ public class AutoFillAspect {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } else if(operationType == OperationType.TIME){
+        } else if(operationType == OperationType.INSERT){
+            //为两个公共字段赋值
+            try {
+                Method setCreateTime = entity.getClass().getDeclaredMethod("setCreateTime", LocalDateTime.class);
+                Method setUpdateTime = entity.getClass().getDeclaredMethod("setUpdateTime", LocalDateTime.class);
+
+                //通过反射为对象赋值属性
+                setCreateTime.invoke(entity, now);
+                setUpdateTime.invoke(entity, now);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else if (operationType == OperationType.UPDATE){
             //为一个公共字段赋值
             try {
                 Method setUpdateTime = entity.getClass().getDeclaredMethod("setUpdateTime", LocalDateTime.class);

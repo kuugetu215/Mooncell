@@ -1,6 +1,7 @@
 package karazuki.mapper;
 
 import entity.SpecialAttack;
+import karazuki.annotation.FillTime;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,9 +18,10 @@ public interface SpecialAttackMapper {
     @Select("select * from special_attack order by sid asc")
     List<SpecialAttack> list();
 
-
+    @FillTime
     void insert(SpecialAttack specialAttack);
 
+    @FillTime
     void update(SpecialAttack specialAttack);
 
     @Select("select * from special_attack where id = #{id} and sid = #{sid} and type = #{type} and obj = #{obj}")

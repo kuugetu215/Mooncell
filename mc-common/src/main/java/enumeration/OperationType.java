@@ -6,9 +6,14 @@ package enumeration;
 public enum OperationType {
 
     /**
-     * 只更新时间
+     * 设置createTime和updateTime
      */
-    TIME,
+    INSERT,
+
+    /**
+     * 设置updateTime
+     */
+    UPDATE,
 
     /**
      * 更新时间与更新人id
