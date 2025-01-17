@@ -72,12 +72,16 @@ public class WebSocketServer {
      *
      * @param message
      */
-    public void sendToAllClient(String message) {
+    public void sendToAllUser(String message) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("message", message);
+        map.put("uid", 1);
+        JSONObject jsonObject = new JSONObject(map);
         Collection<Session> sessions = sessionMap.values();
         for (Session session : sessions) {
             try {
                 //服务器向客户端发送消息
-                session.getBasicRemote().sendText(message);
+                session.getBasicRemote().sendText(jsonObject.toJSONString());
             } catch (Exception e) {
                 e.printStackTrace();
             }

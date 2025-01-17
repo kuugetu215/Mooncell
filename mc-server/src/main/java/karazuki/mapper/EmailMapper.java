@@ -24,4 +24,7 @@ public interface EmailMapper {
     @AutoFill(OperationType.UPDATE)
     @Update("update email set status = 0 where id = #{id}")
     void update(Integer id);
+
+    @Delete("delete from email where status = 0")
+    void delete();
 }

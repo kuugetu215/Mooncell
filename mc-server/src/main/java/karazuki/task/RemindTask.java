@@ -1,5 +1,7 @@
 package karazuki.task;
 
+import karazuki.mapper.EmailMapper;
+import karazuki.service.EmailService;
 import karazuki.websocket.WebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,18 +13,20 @@ public class RemindTask {
     @Autowired
     private WebSocketServer webSocketServer;
 
-    //提醒每日任务更新
-    //TODO 增加消息提醒功能 发送消息增加每日任务种类 增加国服日服时间区分
+    @Autowired
+    private EmailService emailService;
+
+    //每日定时处理已撤回的消息
     @Scheduled(cron = "0 0 0 * * ?")
-    public void everydayRemind(){
-        webSocketServer.sendToAllClient("每日任务已更新");
+    public void deleteRecall(){
+        emailService.delete();
     }
 
-    //TODO 增加消息提醒功能 发送消息增加每周任务种类 增加国服日服时间区分
-    //提醒每周任务更新
 
+    //提醒每周任务更新
     @Scheduled(cron = "0 0 0 ? * * ")
     public void everyweekRemind(){
-        webSocketServer.sendToAllClient("每周任务已更新");
+        webSocketServer.sendToAllUser("每周任务已更新");
+        emailService.sendToAll("每周任务已更新");
     }
 }

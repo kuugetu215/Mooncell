@@ -82,4 +82,29 @@ public class EmailServiceImpl implements EmailService {
             return true;
         }
     }
+
+    @Override
+    public void delete() {
+        emailMapper.delete();
+    }
+
+    @Override
+    public void sendToAll(String msg) {
+
+        List<Integer> uids = userMapper.getAllUid();
+
+        for (Integer id : uids){
+            //将信息插入到数据库中
+            Email email = Email.builder()
+                    .uid(1)
+                    .receiveId(id)
+                    .content(msg)
+                    .status(1)
+                    .isRead(0)
+                    .build();
+            emailMapper.insert(email);
+        }
+    }
+
+
 }

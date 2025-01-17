@@ -56,13 +56,13 @@ public class EmailController {
      * @return
      */
     @PutMapping("/{id}")
-    public Result<Boolean> recall(@PathVariable Integer id){
+    public Result recall(@PathVariable Integer id){
         log.info("撤回消息");
         Boolean isSucceed = emailService.recall(id);
         if (!isSucceed){
             return Result.error("消息发送时间超过2分钟，不可撤回");
         } else {
-            return Result.success(true);
+            return Result.success("你撤回了一条消息");
         }
 
     }
