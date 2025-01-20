@@ -13,6 +13,15 @@ public class ServantImage {
     //立绘代表阶段
     private String stage;
 
+    //中文名
+    private String cname;
+
+    //日文名
+    private String jname;
+
+    //英文名
+    private String ename;
+
     //立绘
     private String image;
 }

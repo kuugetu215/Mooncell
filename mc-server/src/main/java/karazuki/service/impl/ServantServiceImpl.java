@@ -8,10 +8,7 @@ import entity.Servant;
 import entity.ServantDetail;
 import entity.ServantImage;
 import entity.SpecialAttack;
-import karazuki.mapper.ServantClassMapper;
-import karazuki.mapper.ServantDetailMapper;
-import karazuki.mapper.ServantMapper;
-import karazuki.mapper.SpecialAttackMapper;
+import karazuki.mapper.*;
 import karazuki.service.ServantService;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +41,9 @@ public class ServantServiceImpl implements ServantService {
     @Autowired
     private SpecialAttackMapper specialAttackMapper;
 
+    @Autowired
+    private ServantImageMapper servantImageMapper;
+
     /**
      * 从者列表分页查询
      * @param servantPageQueryDTO
@@ -66,7 +66,8 @@ public class ServantServiceImpl implements ServantService {
         //根据id查找从者基本信息
         Servant servant = servantMapper.findById(id);
 
-        //TODO 根据从者id查询立绘信息
+        //根据从者id查询立绘信息
+        List<ServantImage> servantImages = servantImageMapper.findBySid(id);
 
         //根据id查询从者详细信息并根据补正计算并封装数值
         ServantDetail servantDetail = servantDetailMapper.findBySid(id);
@@ -77,6 +78,7 @@ public class ServantServiceImpl implements ServantService {
         BeanUtils.copyProperties(servantDetail, servantVO);
 
         servantVO.setId(id);
+        servantVO.setImages(servantImages);
 
         //查询职介补正信息并填充到VO当中
         Float cor = servantClassMapper.findCftByEname(servant.getSclass());

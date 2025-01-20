@@ -27,14 +27,7 @@ public interface EmailService {
      */
     Boolean recall(Integer id);
 
-    /**
-     * 删除撤回消息
-     */
     void delete();
 
-    /**
-     * 为所有用户发送系统消息
-     * @param msg
-     */
-    void sendToAll(String msg);
+    void sendToAll(String message);
 }
