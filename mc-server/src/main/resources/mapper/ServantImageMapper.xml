@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="karazuki.mapper.ServantImageMapper">
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into servant_image
+        (sid, stage, cname, jname, ename, image) values
+        (#{sid}, #{stage}, #{cname}, #{jname}, #{ename}, #{image})
+    </insert>
+
+    <update id="update">
+        update servant_image
+        <set>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+            <if test="stage != null">
+                stage = #{stage},
+            </if>
+            <if test="cname != null">
+                cname = #{cname},
+            </if>
+            <if test="jname != null">
+                jname = #{jname},
+            </if>
+            <if test="ename != null">
+                ename = #{ename},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
