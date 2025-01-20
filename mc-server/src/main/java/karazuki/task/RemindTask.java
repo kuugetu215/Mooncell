@@ -40,7 +40,6 @@ public class RemindTask {
     //提醒每周任务更新
     @Scheduled(cron = "0 0 0 ? * * ")
     public void everyweekRemind(){
-        webSocketServer.sendToAllUser("每周任务已更新");
         emailService.sendToAll("每周任务已更新");
     }
 

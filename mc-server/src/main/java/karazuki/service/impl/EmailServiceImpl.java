@@ -93,19 +93,23 @@ public class EmailServiceImpl implements EmailService {
         //获取发信用户id
         Integer uid = 1;
 
+        List<Integer> all = userMapper.getAll();
+
+        for (Integer receiveId : all){
+            //将信息插入到数据库中
+            Email email = Email.builder()
+                    .uid(uid)
+                    .receiveId(receiveId)
+                    .content(message)
+                    .status(1)
+                    .isRead(0)
+                    .build();
+            emailMapper.insert(email);
+
+            //调用websocket发送数据
+            webSocketServer.sendToUser(email.getContent(), uid, email.getReceiveId());
+        }
 
 
-        //将信息插入到数据库中
-        Email email = Email.builder()
-                .uid(uid)
-                .receiveId(emailSendDTO.getReceiveId())
-                .content(message)
-                .status(1)
-                .isRead(0)
-                .build();
-        emailMapper.insert(email);
-
-        //调用websocket发送数据
-        webSocketServer.sendToUser(email.getContent(), uid, email.getReceiveId());
     }
 }
